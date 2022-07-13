@@ -1,0 +1,24 @@
+<!-- <ion-card button = true></ion-card> -->
+<ion-card>
+  <!-- <ion-row [routerLink]="book.id"> -->
+    <!-- <ion-row (click) = "openModalDetail(book)"> -->
+    <ion-row>
+    <ion-col>
+      <img [src] = "book.imgUrl" />
+      <ion-card-header>
+        <ion-card-subtitle>{{book.category.value}}</ion-card-subtitle>
+        <ion-card-title>{{book.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{book.author.name}} {{book.author.surname}}
+      </ion-card-content>
+    </ion-col>
+  </ion-row>
+
+  <!-- <ion-row>
+    <ion-col offset="6">
+      <ion-button color="primary" shape="round" (click) = "openActionSheet()">OPCIJE</ion-button>
+    </ion-col>
+  </ion-row> -->
+  
+</ion-card>

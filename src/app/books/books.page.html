@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button menu = "first"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Knjige</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-buttons class="ion-justify-content-center">
+    <ion-button routerLink = "/favourites" color = "tertiary" fill = "solid">
+      Favourites
+    </ion-button>
+  </ion-buttons> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-list>
+          <!-- <app-book-element *ngFor = "let book of books" [book] = "book" ></app-book-element> -->
+          <app-book-element *ngFor = "let book of books$|async" [book] = "book" (click) = "openModalDetail(book)"></app-book-element>
+        </ion-list>
+      </ion-col>
+      <!-- <ion-col size-sm="4">
+        <app-book-element *ngFor="let book of books"></app-book-element>
+      </ion-col>
+      <ion-col size-sm="4">
+        <app-book-element *ngFor="let book of books"></app-book-element>
+      </ion-col> -->
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

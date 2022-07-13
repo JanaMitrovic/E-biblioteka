@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot = "start">
+      <ion-button (click) ="closeModal()">
+        <ion-icon slot="start" name="chevron-down-outline" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Detaljnije</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-justify-content-center">
+  <ion-item>
+    <img src="https://images.theconversation.com/files/45159/original/rptgtpxd-1396254731.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=754&fit=clip">
+  </ion-item>
+  <ion-item>
+    <ion-label class="">
+      <h3>{{book.category.value}}</h3>
+      <h1>{{book.title}}</h1>
+      <h2>{{book.author.name}} {{book.author.surname}} - {{book.year}}</h2>
+    </ion-label>
+  </ion-item>
+  <ion-textarea style="padding-left: 20px; padding-right: 20px;" aria-disabled="true">{{book.description}}</ion-textarea>
+  <ion-button expand="block" shape="round" color="secondary" (click) = "openUpdateModal()">IZMENI</ion-button>
+  <ion-button expand="block" shape="round" color="danger" (click) = "onDeleteBook()">IZBRIŠI</ion-button>
+</ion-content>

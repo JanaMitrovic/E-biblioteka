@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot = "start" *ngIf="!isEditMode">
+      <ion-back-button text="" defaultHref = "/books"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{isEditMode ? 'Izmeni knjigu' : 'Dodaj knjigu' }}</ion-title>
+
+    <ion-buttons slot="end" *ngIf="!isEditMode">
+      <ion-menu-button menu = "first"></ion-menu-button>
+    </ion-buttons>
+
+    <ion-buttons slot="start" *ngIf="isEditMode">
+      <ion-button (click) = "closeModal()">
+        <ion-icon slot="icon-only" name="chevron-down-outline" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup] = "addForm" (ngSubmit) = "addNew()">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">imgUrl</ion-label>
+            <ion-input type="text" formControlName = "imgUrl"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Kategorija</ion-label>
+            <ion-input type="text" formControlName = "category"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Naslov</ion-label>
+            <ion-input type="text" formControlName = "title"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Ime autora</ion-label>
+            <ion-input type="text" formControlName = "authorName"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Prezime autora</ion-label>
+            <ion-input type="text" formControlName = "authorSurname"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Godina izdanja</ion-label>
+            <ion-input type="text" formControlName = "year"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Sinopsis</ion-label>
+            <ion-textarea type="text" rows="7" formControlName = "description"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" shape="round" expand="block" color="warning">{{isEditMode ? 'IZMENI' : 'DODAJ' }}</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
