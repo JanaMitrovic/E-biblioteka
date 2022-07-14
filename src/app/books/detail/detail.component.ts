@@ -54,4 +54,8 @@ export class DetailComponent implements OnInit {
     });
   }
 
+  borrow(){
+    this.bookService.addToBorrowed(this.book);
+  }
+
 }

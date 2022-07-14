@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BookElementComponent } from './book-element/book-element.component';
@@ -27,17 +27,54 @@ export class BooksService {
   // }
 
   addBook(book: Book): Observable<Book>{
-    return this.http.post<Book>(`${this.apiUrl}/books`, book);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${window.sessionStorage.getItem('access_tocken')}` });
+    let options = { headers: headers };
+    return this.http.post<Book>(`${this.apiUrl}/books`, book, options);
   }
 
   updateBook(bookId: number, book: Book): Observable<Book>{
-    return this.http.put<Book>(`${this.apiUrl}/books/${bookId}`, book);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${window.sessionStorage.getItem('access_tocken')}` });
+    let options = { headers: headers };
+    return this.http.put<Book>(`${this.apiUrl}/books/${bookId}`, book, options);
   }
 
   deleteBook(bookId: number):Observable<Book>{
-    return this.http.delete<Book>(`${this.apiUrl}/books/${bookId}`);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${window.sessionStorage.getItem('access_tocken')}` });
+    let options = { headers: headers };
+    return this.http.delete<Book>(`${this.apiUrl}/books/${bookId}`, options);
   }
 
+  borrowed: Book[] = [];
 
+  addToBorrowed(book: Book){
+    console.log(this.borrowed);
+    let exists = false;
+    this.borrowed.forEach(b => {
+      if(book.id = b.id){
+        exists = true;
+      }
+    });
+    if(exists == false){
+      this.borrowed.push(book);
+    }
+      // this.borrowed.push(book);
+
+    
+  }
+
+  removeFromBorrowed(book: Book){
+    this.borrowed.filter(b => b.id !== book.id)
+    location.reload();
+  }
+
+  getBorrowed(){
+    return this.borrowed;
+  }
 
 }
