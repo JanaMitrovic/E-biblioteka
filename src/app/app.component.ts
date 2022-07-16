@@ -19,7 +19,7 @@ export class AppComponent {
 
   onLogOut(){
     this.authService.logOut();
-    // this.router.navigateByUrl('/log-in');
+    this.router.navigateByUrl('/log-in');
     // location.reload();
   }
 

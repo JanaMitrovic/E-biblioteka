@@ -20,14 +20,17 @@ const routes: Routes = [
   {
     path: 'borrowed',
     loadChildren: () => import('./borrowed/borrowed.module').then( m => m.BorrowedPageModule),
-    canLoad: [AuthGuard]
   },
   {
     path: 'add-new',
     loadChildren: () => import('./add-new/add-new.module').then( m => m.AddNewPageModule),
     canLoad: [AuthGuard]
   },
-
+  {
+    path: '',
+    redirectTo: 'books',
+    pathMatch: 'full'
+  }
   
   
 ];
