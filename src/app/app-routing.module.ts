@@ -27,11 +27,7 @@ const routes: Routes = [
     loadChildren: () => import('./add-new/add-new.module').then( m => m.AddNewPageModule),
     canLoad: [AuthGuard]
   },
-  {
-    path: '',
-    redirectTo: 'books',
-    pathMatch: 'full'
-  },
+
   
   
 ];
