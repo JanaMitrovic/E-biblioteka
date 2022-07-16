@@ -27,9 +27,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    // Route::get('/user', function (Request $request) {
-    //     return auth()->user();
-    // });
+    
     Route::apiResource('books', BookController::class)->only(['update', 'store', 'destroy']);
 
     Route::post('/logout', [AuthController::class, 'logout']);

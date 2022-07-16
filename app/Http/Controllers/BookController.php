@@ -45,15 +45,6 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        // $request -> validate([
-        //     'imgUrl' => 'required',
-        //     'category' => 'required',
-        //     'title' => 'required',
-        //     'author' => 'required',
-        //     'year' => 'required',
-        //     'description' => 'required',
-        // ]);
-
         $categoryController = new CategoryController;
         $category = $categoryController->store($request);
 
