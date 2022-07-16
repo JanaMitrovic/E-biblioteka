@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, ModalController } from '@ionic/angular';
+import { LoadingController, MenuController, ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import {map, tap, toArray} from 'rxjs/operators'
+import { AuthService } from '../auth/auth.service';
 import { Book } from './book.model';
 import { BooksService } from './books.service';
 import { DetailComponent } from './detail/detail.component';
@@ -16,30 +17,21 @@ export class BooksPage implements OnInit {
   // books: Book[] = [{id: 'b1', img: 'https://th.bing.com/th/id/R.eddc11e071e097a34b904de9263a26c5?rik=v5aQ9DvtwoguBg&pid=ImgRaw&r=0', category: 'drama', title: 'Title', author: 'Author', year: '2018', description: 'Description'},
   //                   {id: 'b2', img: 'https://th.bing.com/th/id/R.eddc11e071e097a34b904de9263a26c5?rik=v5aQ9DvtwoguBg&pid=ImgRaw&r=0', category: 'dramaa', title: 'Title2', author: 'Author2', year: '2018', description: 'Description2'}];
 
-
-  // books: Book[];
-
+  uslov: '';
   books$: Observable<Book[]>;
-
+  role: String;
 
   constructor(
     private booksService: BooksService, 
     private loadingCtl: LoadingController, 
-    private modalCtrl: ModalController) { 
-    // this.books = this.booksService.books;
+    private modalCtrl: ModalController,
+    private authService: AuthService) {
 
   }
 
   async ngOnInit() {
-    // const loading = await this.loadingCtl.create({message: 'Loading...'});
-    // loading.present();
-
-    // this.books$ = this.booksService.getBooks().pipe(
-    //   tap(books => {
-    //     loading.dismiss();
-    //     return books;
-    //   })
-    // );
+    this.role = this.authService.getRole();
+    console.log(this.role);
 
   }
 
@@ -58,7 +50,8 @@ export class BooksPage implements OnInit {
   async openModalDetail(book:Book){
     const modal = await this.modalCtrl.create({
       component: DetailComponent,
-      componentProps: {book}
+      componentProps: {book},
+      cssClass: 'fullscreen'
     });
 
     await modal.present();
@@ -98,5 +91,7 @@ export class BooksPage implements OnInit {
       )
     }
   }
+
+
 
 }

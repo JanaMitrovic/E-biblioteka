@@ -11,7 +11,7 @@
 
 <ion-content class="ion-justify-content-center">
   <ion-item>
-    <img src="https://images.theconversation.com/files/45159/original/rptgtpxd-1396254731.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=754&fit=clip">
+    <img src="https://prcbookprinting.com/wp-content/uploads/blog-56.png">
   </ion-item>
   <ion-item>
     <ion-label class="">
@@ -21,6 +21,14 @@
     </ion-label>
   </ion-item>
   <ion-textarea style="padding-left: 20px; padding-right: 20px;" aria-disabled="true">{{book.description}}</ion-textarea>
-  <ion-button expand="block" shape="round" color="secondary" (click) = "openUpdateModal()">IZMENI</ion-button>
-  <ion-button expand="block" shape="round" color="danger" (click) = "onDeleteBook()">IZBRIŠI</ion-button>
+
+  <ion-row>
+    <ion-col size-sm="4">
+      <ion-button expand="block" shape="round" color="secondary" (click) = "openUpdateModal()" *ngIf = "role == 'admin'">IZMENI</ion-button>
+      <ion-button expand="block" shape="round" color="danger" (click) = "onDeleteBook()" *ngIf = "role == 'admin'">IZBRIŠI</ion-button>
+      <ion-button expand="block" shape="round" color="secondary" fill="outline" (click) = "borrow()">IZNAJMI</ion-button>
+    </ion-col>
+  </ion-row>
+  
+  
 </ion-content>

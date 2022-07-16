@@ -8,25 +8,29 @@
 </ion-header>
 
 <ion-content>
-  <!-- <ion-buttons class="ion-justify-content-center">
-    <ion-button routerLink = "/favourites" color = "tertiary" fill = "solid">
-      Favourites
-    </ion-button>
-  </ion-buttons> -->
   <ion-grid>
     <ion-row>
-      <ion-col size-sm="6" offset-sm="3">
+      <ion-col size-sm="4">
+        <ion-button expand="block" shape="round" color="primary" fill="outline" style="margin-left:20px; margin-right:20px; margin-top:15px;" routerLink = "/add-new" *ngIf = "role == 'admin'">DODAJ NOVU KNJIGU</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-sm="4">
+        <ion-searchbar placeholder="Pretrazite knjige" [(ngModel)]="uslov" animated="true"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col sizeLg="4" sizeMd="6" sizeXs="12" *ngFor = "let book of books$|async | filter:uslov">
         <ion-list>
-          <!-- <app-book-element *ngFor = "let book of books" [book] = "book" ></app-book-element> -->
-          <app-book-element *ngFor = "let book of books$|async" [book] = "book" (click) = "openModalDetail(book)"></app-book-element>
+          <!-- <app-book-element *ngFor = "let book of books$|async" [book] = "book" (click) = "openModalDetail(book)"></app-book-element> -->
+
+          <!-- <app-book-element *ngFor = "let book of books$|async | filter:uslov" [book] = "book" (click) = "openModalDetail(book)"></app-book-element> -->
+
+          <app-book-element  [book] = "book" (click) = "openModalDetail(book)"></app-book-element>
+
+
         </ion-list>
       </ion-col>
-      <!-- <ion-col size-sm="4">
-        <app-book-element *ngFor="let book of books"></app-book-element>
-      </ion-col>
-      <ion-col size-sm="4">
-        <app-book-element *ngFor="let book of books"></app-book-element>
-      </ion-col> -->
     </ion-row>
   </ion-grid>
   

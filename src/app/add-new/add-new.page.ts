@@ -25,15 +25,6 @@ export class AddNewPage implements OnInit {
     private modalCtrl: ModalController) { }
 
   ngOnInit() {
-    // this.addForm = new FormGroup({
-    //   imgUrl: new FormControl(null),
-    //   category: new FormControl(null),
-    //   title: new FormControl(null),
-    //   authorName: new FormControl(null),
-    //   authorSurname: new FormControl(null),
-    //   year: new FormControl(null),
-    //   description: new FormControl(null)
-    // });
     this.initAddBookForm();
 
     if(this.book){
@@ -73,8 +64,6 @@ export class AddNewPage implements OnInit {
   }
 
   async addNew(){
-    // this.router.navigateByUrl('/books');
-    // console.log(this.addForm.value);
 
     const loading = await this.loadingCtrl.create({message:"Loading..."});
     loading.present();
@@ -90,7 +79,7 @@ export class AddNewPage implements OnInit {
     response.pipe(take(1)).subscribe((book) => {
         this.addForm.reset();
         loading.dismiss();
-        
+
         if(this.isEditMode){
           this.closeModal(book);
         }

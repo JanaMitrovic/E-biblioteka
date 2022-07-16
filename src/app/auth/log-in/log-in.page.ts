@@ -16,17 +16,24 @@ export class LogInPage implements OnInit {
 
   ngOnInit() {
     this.logInForm = new FormGroup({
-      email: new FormControl('Username@gmail.com', [Validators.required, Validators.email]),
-      password: new FormControl('Password123', [Validators.required, Validators.minLength(8)]),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
     });
   }
 
   onLogIn(){
     console.log(this.logInForm.value);
     this.authService.logIn(this.logInForm.value).subscribe(res =>{
-      console.log('Uspesna prijava!');
-      console.log(res);
-      this.router.navigateByUrl('/books');
+      if(res.success == true){
+        console.log('Uspesno');
+
+        window.sessionStorage.setItem("access_tocken", res.access_token);
+
+        this.router.navigateByUrl('/books');
+      }else{
+        console.log('neuspesno');
+      }
+      
     });
   }
 

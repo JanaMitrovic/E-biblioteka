@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { UpdateModalComponent } from './update-modal.component';
+import { BorrowedElementComponent } from './borrowed-element.component';
 
-describe('UpdateModalComponent', () => {
-  let component: UpdateModalComponent;
-  let fixture: ComponentFixture<UpdateModalComponent>;
+describe('BorrowedElementComponent', () => {
+  let component: BorrowedElementComponent;
+  let fixture: ComponentFixture<BorrowedElementComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ UpdateModalComponent ],
+      declarations: [ BorrowedElementComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UpdateModalComponent);
+    fixture = TestBed.createComponent(BorrowedElementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

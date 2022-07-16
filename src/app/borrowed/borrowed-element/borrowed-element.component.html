@@ -1,7 +1,9 @@
 <ion-card>
     <ion-row>
+      <ion-col>
+        <img [src] = "book.imgUrl" />
+      </ion-col>
     <ion-col>
-      <img [src] = "book.imgUrl" />
       <ion-card-header>
         <ion-card-subtitle>{{book.category.value}}</ion-card-subtitle>
         <ion-card-title>{{book.title}}</ion-card-title>
@@ -9,6 +11,7 @@
       <ion-card-content>
         {{book.author.name}} {{book.author.surname}}
       </ion-card-content>
+      <ion-button expand="block" shape="round" color="secondary" style="margin-top: 140px" (click) = "remove()">Vrati knjigu</ion-button>
     </ion-col>
   </ion-row>
   

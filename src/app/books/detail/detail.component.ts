@@ -2,8 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { take } from 'rxjs/operators';
 import { AddNewPage } from 'src/app/add-new/add-new.page';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Book } from '../book.model';
 import { BooksService } from '../books.service';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-detail',
@@ -12,14 +14,17 @@ import { BooksService } from '../books.service';
 })
 export class DetailComponent implements OnInit {
   @Input() book: Book;
+  role: String;
 
   constructor(
     private modalCtrl: ModalController, 
     private bookService: BooksService, 
-    private loadingCtrl: LoadingController) { }
+    private loadingCtrl: LoadingController,
+    private authService: AuthService) { }
 
   ngOnInit() {
-    
+    this.role = this.authService.getRole();
+    console.log(this.role);
   }
 
   closeModal(role = 'edit'){
@@ -30,6 +35,7 @@ export class DetailComponent implements OnInit {
     const modal = await this.modalCtrl.create({
       component: AddNewPage,
       componentProps: {book: this.book},
+      cssClass: 'fullscreen'
     });
 
 
@@ -43,15 +49,16 @@ export class DetailComponent implements OnInit {
   }
 
   async onDeleteBook(){
-    // const loading = await this.loadingCtrl.create({message: 'Deleting...'});
-    // loading.present();
     this.bookService
     .deleteBook(this.book.id)
     .pipe(take(1))
     .subscribe(() => {
-      // loading.dismiss();
       this.closeModal('delete');
     });
+  }
+
+  borrow(){
+    this.bookService.addToBorrowed(this.book);
   }
 
 }

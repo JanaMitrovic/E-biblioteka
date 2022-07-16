@@ -41,3 +41,9 @@ ion-title{
 ion-back-button{
     --color: var(--ion-color-primary-contrast)
 }
+
+ion-modal.fullscreen {
+    --width: 100%;
+    --height: 100%;
+    --border-radius: 0;
+  }

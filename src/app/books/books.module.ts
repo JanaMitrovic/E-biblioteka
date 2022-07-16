@@ -8,7 +8,9 @@ import { BooksPageRoutingModule } from './books-routing.module';
 
 import { BooksPage } from './books.page';
 import { BookElementComponent } from './book-element/book-element.component';
-import { UpdateModalComponent } from './update-modal/update-modal.component';
+import { DetailComponent } from './detail/detail.component';
+
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 
 @NgModule({
@@ -16,9 +18,10 @@ import { UpdateModalComponent } from './update-modal/update-modal.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    BooksPageRoutingModule
+    BooksPageRoutingModule,
+    Ng2SearchPipeModule
   ],
-  declarations: [BooksPage, BookElementComponent, UpdateModalComponent],
-  entryComponents: [UpdateModalComponent]
+  declarations: [BooksPage, BookElementComponent, DetailComponent],
+  entryComponents: []
 })
 export class BooksPageModule {}
